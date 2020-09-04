@@ -84,11 +84,11 @@ module.exports = function(input){
           {
             path: 'navigation.attitude',
             value: {
-              heading: Number(parts[1]),
+              yaw: Number(parts[1]),
               roll: Number(parts[3]),
               pitch: Number(parts[4])
             }
-          },
+          },/* //these are not populated in schema, and will result in errors
           {
             path: 'navigation.attitude.accuracy',
             value: {
@@ -96,22 +96,17 @@ module.exports = function(input){
               roll: Number(parts[6]),
               pitch: Number(parts[7])
             }
-          },
+          },*/
           {
-            path: 'navigation.attitude.heading',
+            path: 'navigation.attitude.yaw',
             value: {
-              heading: Number(parts[1]),
-              true: parts[2] === "T"
-            }
+                     Number(parts[1])
+            }: parts[2] === "T"
           },
           {
-            path: 'navigation.attitude.heading.true',
-            value: parts[2] === "T"
-          },
-          {
-            path: 'navigation.attitude.heave',
+            path: 'environment.heave',
             value: Number(parts[5])
-          },
+          },/* //these are not populated and will fail
           {
             path: 'navigation.attitude.aid',
             value: GPSQualityFlags[utils.int(parts[9])]
@@ -120,7 +115,7 @@ module.exports = function(input){
           {
             path: 'navigation.attitude.status',
             value: INSStatusFlag[utils.int(parts[10])]
-          },
+          },*/
         ]
       }
     ],
